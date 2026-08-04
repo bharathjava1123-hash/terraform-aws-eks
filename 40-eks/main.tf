@@ -7,16 +7,16 @@ resource "aws_key_pair" "eks" {
 }
 
 module "eks" {
-    
+
   source  = "terraform-aws-modules/eks/aws"
   version = "~> 21.0"   
 
-  cluster_name    = "${var.project_name}-${var.environment}"
-  cluster_version = "1.35"
+  name    = "${var.project_name}-${var.environment}"
+  kubernetes_version = "1.35"
 
-  cluster_endpoint_public_access  = true
+  endpoint_public_access  = true
 
-  cluster_addons = {
+  addons = {
     coredns                = {}
     eks-pod-identity-agent = {}
     kube-proxy             = {}
@@ -28,7 +28,7 @@ module "eks" {
   control_plane_subnet_ids = local.private_subnet_ids
 
   create_cluster_security_group = false
-  cluster_security_group_id     = local.eks_control_plane_sg_id
+  security_group_id     = local.eks_control_plane_sg_id
 
   create_node_security_group = false
   node_security_group_id     = local.node_sg_id
