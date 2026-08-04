@@ -28,8 +28,8 @@ module "eks" {
   control_plane_subnet_ids = local.private_subnet_ids
 
   additional_security_group_ids = [
-  local.eks_control_plane_sg_id
-]
+    local.eks_control_plane_sg_id
+  ]
 
   create_node_security_group = false
   node_security_group_id     = local.node_sg_id
@@ -47,7 +47,12 @@ module "eks" {
         min_size       = 2
         max_size       = 10
         desired_size   = 2
-        instance_types = ["m6i.large", "m5.large", "m5n.large", "m5zn.large"]
+          instance_types = [
+            "m6i.large",
+            "m5.large",
+            "m5n.large",
+            "m5zn.large"
+        ]
 
         #capacity_type = "SPOT"
         iam_role_additional_policies = {
