@@ -4,7 +4,7 @@ module "mysql_sg" {
   project_name = var.project_name
   environment =  var.environment
   sg_name = "mysql"
-  sg_tags = var.mysql_sg_tags
+  #sg_tags = var.mysql_sg_tags
   common_tags = var.common_tags
 
 }
@@ -15,7 +15,7 @@ module "bastion_sg" {
   project_name = var.project_name
   environment =  var.environment
   sg_name = "bastion"
-  sg_tags = var.bastion_sg_tags
+  #sg_tags = var.bastion_sg_tags
   common_tags = var.common_tags
 
 }
@@ -31,7 +31,7 @@ module "node_sg" {
 
 }
 
-module "control_plane_sg" {
+module "eks_control_plane_sg" {
   source = "git::https://github.com/bharathjava1123-hash/terraform-aws-security-group.git?ref=main"
   vpc_id = local.vpc_id
   project_name = var.project_name
