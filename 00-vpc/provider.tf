@@ -8,10 +8,10 @@ terraform {
 
   backend "s3" {
 
-    bucket = "terraform-k8s"
+    bucket = "terraform-test11"
     key    = "expense-vpc"
     region = "us-east-1"
-    dynamodb_table = "expesne-locking"
+    dynamodb_table = "terraform-test11"
   
   }
 
