@@ -43,41 +43,38 @@ module "eks" {
 
   eks_managed_node_groups = {
 
-      blue = {
-        min_size       = 2
-        max_size       = 10
-        desired_size   = 2
-          instance_types = [
-            "m6i.large",
-            "m5.large",
-            "m5n.large",
-            "m5zn.large"
-        ]
+    blue = {
+      min_size     = 2
+      max_size     = 10
+      desired_size = 2
+      instance_types = [
+        "m7i-flex.large"
+      ]
 
-        #capacity_type = "SPOT"
-        iam_role_additional_policies = {
-          AmazonEBSCSIDriverPolicy          = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
-          AmazonElasticFileSystemFullAccess = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
-          ElasticLoadBalancingFullAccess    = "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess"
-        }
-        # EKS takes AWS Linux 2 as it's OS to the nodes
-        key_name = aws_key_pair.eks.key_name
+      #capacity_type = "SPOT"
+      iam_role_additional_policies = {
+        AmazonEBSCSIDriverPolicy          = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+        AmazonElasticFileSystemFullAccess = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
+        ElasticLoadBalancingFullAccess    = "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess"
       }
+      # EKS takes AWS Linux 2 as it's OS to the nodes
+      key_name = aws_key_pair.eks.key_name
     }
-    # green = {
-    #   min_size      = 2
-    #   max_size      = 10
-    #   desired_size  = 2
-    #   #capacity_type = "SPOT"
-    #   iam_role_additional_policies = {
-    #     AmazonEBSCSIDriverPolicy          = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
-    #     AmazonElasticFileSystemFullAccess = "arn:aws:iam::aws:policy/AmazonElasticFileSystemFullAccess"
-    #     ElasticLoadBalancingFullAccess = "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess"
-    #   }
-    #   # EKS takes AWS Linux 2 as it's OS to the nodes
-    #   key_name = aws_key_pair.eks.key_name
-    # }
-  
+  }
+  # green = {
+  #   min_size      = 2
+  #   max_size      = 10
+  #   desired_size  = 2
+  #   #capacity_type = "SPOT"
+  #   iam_role_additional_policies = {
+  #     AmazonEBSCSIDriverPolicy          = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+  #     AmazonElasticFileSystemFullAccess = "arn:aws:iam::aws:policy/AmazonElasticFileSystemFullAccess"
+  #     ElasticLoadBalancingFullAccess = "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess"
+  #   }
+  #   # EKS takes AWS Linux 2 as it's OS to the nodes
+  #   key_name = aws_key_pair.eks.key_name
+  # }
+
 
   # Cluster access entry
   # To add the current caller identity as an administrator
