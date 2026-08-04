@@ -77,7 +77,7 @@ module "eks" {
     #   # EKS takes AWS Linux 2 as it's OS to the nodes
     #   key_name = aws_key_pair.eks.key_name
     # }
-  }
+  
 
   # Cluster access entry
   # To add the current caller identity as an administrator
